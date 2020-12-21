@@ -9,10 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.rmi.StubNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/students")
 public class StudentController {
@@ -46,5 +45,22 @@ public class StudentController {
     public ResponseEntity<Student> deleteStudent(@PathVariable int id){
         studentRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable int id, @RequestBody Student student){
+        Student _student = studentRepository.findById(id).get();
+
+        if(student.getStudent_email() != null) {
+            studentRepository.updateStudentEmail(student.getStudent_email(), _student.getStudent_id());
+        }
+        if(student.getStudent_name() != null){
+            studentRepository.updateStudentName(student.getStudent_name(), _student.getStudent_id());
+        }
+        if(student.getSupervisor() != null){
+            studentRepository.updateStudentSupervisor(student.getSupervisor().getSupervisor_id(), _student.getStudent_id());
+        }
+
+        return new ResponseEntity<>(studentRepository.findById(id).get(), HttpStatus.OK);
     }
 }
