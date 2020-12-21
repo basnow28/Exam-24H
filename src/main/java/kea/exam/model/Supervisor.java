@@ -11,7 +11,7 @@ import java.util.Collection;
 public class Supervisor {
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int supervisor_id;
 
     @NotNull

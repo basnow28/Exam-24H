@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Student {
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     private int student_id;
 
     @NotNull
