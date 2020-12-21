@@ -1,0 +1,10 @@
+create schema kea_exam;
+
+
+CREATE user 'kea'@'localhost' identified by 'Kea_exam1234';
+
+grant all privileges on kea_exam.* to 'kea'@'localhost';
+
+flush privileges;
+
+insert into supervisors (supervisor_id, supervisor_name) values (1, "Teacher 1"),(2, "Teacher 2"),(3, "Teacher 3"), (4, "Teacher 4");
